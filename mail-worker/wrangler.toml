@@ -47,6 +47,10 @@ database_id = "fef9222c-97c8-46f4-9859-ec6922c07e8d"
 binding = "kv"
 id = "0fed885cd0f549be864fa8e8b61dd47e"
 
+[[r2_buckets]]
+binding = "r2"
+bucket_name = "cloud-mail-r2"
+
 [vars]
 domain = ["mercemay.com"]
 admin = "admin@mercemay.com"
