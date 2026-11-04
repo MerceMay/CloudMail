@@ -38,7 +38,18 @@ run_worker_first = true
 crons = ["0 * * * *"]	#每小时执行；resetDaySendCount 仅在 UTC 0 点生效
 
 
+[[d1_databases]]
+binding = "db"
+database_name = "cloud-mail-d1"
+database_id = "fef9222c-97c8-46f4-9859-ec6922c07e8d"
+
+[[kv_namespaces]]
+binding = "kv"
+id = "0fed885cd0f549be864fa8e8b61dd47e"
+
 [vars]
+domain = ["mercemay.com"]
+admin = "admin@mercemay.com"
 #ai_model = ""			#ai模型,不填默认使用@cf/meta/llama-3.1-8b-instruct-fast
 #analysis_cache = false			#是否开启分析数据缓存
 #orm_log = false			#是否sql日志
@@ -48,3 +59,4 @@ crons = ["0 * * * *"]	#每小时执行；resetDaySendCount 仅在 UTC 0 点生�
 
 [build]
 command = "pnpm --prefix ../mail-vue install && pnpm --prefix ../mail-vue run build"
+
