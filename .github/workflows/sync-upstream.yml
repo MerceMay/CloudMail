@@ -23,5 +23,14 @@ jobs:
           fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git merge --no-edit FETCH_HEAD
+          if ! git merge --no-commit --no-ff FETCH_HEAD; then
+            git rev-parse --verify MERGE_HEAD >/dev/null
+          fi
+          # Keep this fork's workflows. GITHUB_TOKEN cannot update workflow files.
+          git restore --source=HEAD --staged --worktree -- .github/workflows/
+          if [ -n "$(git ls-files -u)" ]; then
+            git diff --name-only --diff-filter=U
+            exit 1
+          fi
+          git commit --no-edit
           git push origin HEAD:main
